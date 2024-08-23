@@ -23,7 +23,9 @@ export class MenubarComponent extends Component {
                                             <li><Link className="dropdown-item" to={"/forms-with-functions"}>Forms Inside Function</Link></li>
                                             <li><Link className="dropdown-item" to={"/lists-with-classes"}>Lists/Tables Inside Class</Link></li>
                                             <li><Link className="dropdown-item" to={"/apply-events"}>Apply With Events</Link></li>
+                                            <li><Link className="dropdown-item" to={"/apply-events-js"}>Apply Js With Events</Link></li>
                                             <li><Link className="dropdown-item" to={"/apply-api"}>Apply With Api</Link></li>
+                                            <li><Link className="dropdown-item" to={"/apply-api-js"}>Apply Js With Api</Link></li>
                                         </ul>
                                     </li>
                                 </ul>

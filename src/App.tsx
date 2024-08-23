@@ -14,6 +14,12 @@ import {
 } from "./components/forms/FormsFunctionsComponent.tsx";
 import {LogicAndEvents} from "./components/play_events/LogicAndEvents.tsx";
 import {ReadsConceptClass} from "./components/play_apis/ReadsConceptClass.tsx";
+// js files work after you allow it on tsconfig.app.json file
+// *** and we export by default no nned to {}
+import ReadsConceptJsClass  from "./components/play_apis_js/ReadsConceptJsClass"
+import UpdateConceptJsClass from "./components/play_apis_js/UpdateConceptJsClass";
+import {LogicAndEventsJs} from "./components/play_events/LogicAndEventsJs";
+
 /*Use .ts files:
 For general TypeScript code that doesn’t involve JSX syntax, such as utility functions, business logic or library code.
 Use .tsx files:
@@ -42,8 +48,17 @@ function App() {
                         <ListsAndTablesComponent students={[new Student(1, "Peter Parker", 26),new Student(2, "Alex Ryder", 26),new Student(3, "Kevin Owner", 25)]}/>
                     }/>
                     <Route path={"apply-events"} element={ <LogicAndEvents/> }/>
-                    <Route path={"/apply-api"} element={
+                    <Route path={"apply-events-js"} element={ <LogicAndEventsJs /> }/>
+                    <Route path={"apply-api"} element={
                         <ReadsConceptClass />
+                    } />
+
+                    <Route path={"apply-api-js"} element={
+                        <ReadsConceptJsClass />
+                    } />
+                    {/* param as ?key=<value>*/}
+                    <Route path={"users/edit"} element={
+                        <UpdateConceptJsClass />
                     } />
                 </Route>
             </Routes>
