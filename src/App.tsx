@@ -19,6 +19,8 @@ import {ReadsConceptClass} from "./components/play_apis/ReadsConceptClass.tsx";
 import ReadsConceptJsClass  from "./components/play_apis_js/ReadsConceptJsClass"
 import UpdateConceptJsClass from "./components/play_apis_js/UpdateConceptJsClass";
 import {LogicAndEventsJs} from "./components/play_events/LogicAndEventsJs";
+import LoginJs from "./components/understand-line-login/LoginJs";
+import DisplayInformationJs from "./components/understand-line-login/DisplayInformationJs.jsx";
 
 /*Use .ts files:
 For general TypeScript code that doesn’t involve JSX syntax, such as utility functions, business logic or library code.
@@ -59,6 +61,12 @@ function App() {
                     {/* param as ?key=<value>*/}
                     <Route path={"users/edit"} element={
                         <UpdateConceptJsClass />
+                    } />
+                    <Route path={"line-login"} element={
+                        <LoginJs />
+                    } />
+                    <Route path={"display-information"} element={
+                        <DisplayInformationJs />
                     } />
                 </Route>
             </Routes>

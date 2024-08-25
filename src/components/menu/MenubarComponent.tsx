@@ -26,6 +26,7 @@ export class MenubarComponent extends Component {
                                             <li><Link className="dropdown-item" to={"/apply-events-js"}>Apply Js With Events</Link></li>
                                             <li><Link className="dropdown-item" to={"/apply-api"}>Apply With Api</Link></li>
                                             <li><Link className="dropdown-item" to={"/apply-api-js"}>Apply Js With Api</Link></li>
+                                            <li><Link className="dropdown-item" to={"/line-login"}>Line Login</Link></li>
                                         </ul>
                                     </li>
                                 </ul>
