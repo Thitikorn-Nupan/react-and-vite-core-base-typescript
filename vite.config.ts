@@ -23,6 +23,9 @@ export default defineConfig({
   define: {
       // we have to set key : value for call by process.env.<key>
       'process.env.LIFF_ID': JSON.stringify(process.env.LIFF_ID),
-  }
+  },
+  base : ""
 })
+
+
 

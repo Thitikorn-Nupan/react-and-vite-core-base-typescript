@@ -1,26 +1,26 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 // import './App.css'
-import {MenubarComponent} from "./components/menu/MenubarComponent.tsx";
-import {AlertMessageComponent} from "./components/alert-message/AlertMessageComponent.tsx";
-import {FormsComponent} from "./components/forms/FormsComponent.tsx";
-import {ListsAndTablesComponent} from "./components/lists-tables/ListsAndTablesComponent.tsx";
-import {Student} from "./entities/student.ts";
+import {MenubarComponent} from "./assets/components/menu/MenubarComponent.tsx";
+import {AlertMessageComponent} from "./assets/components/alert-message/AlertMessageComponent.tsx";
+import {FormsComponent} from "./assets/components/forms/FormsComponent.tsx";
+import {ListsAndTablesComponent} from "./assets/components/lists-tables/ListsAndTablesComponent.tsx";
+import {Student} from "./assets/entities/student.ts";
 import {
     Form1,
     Form2,
     Form3MultipleInputs,
     Form4setSateByHooks,
     Form5setStateAsObject, Form6setStateAsObjectDynamicInputs
-} from "./components/forms/FormsFunctionsComponent.tsx";
-import {LogicAndEvents} from "./components/play_events/LogicAndEvents.tsx";
-import {ReadsConceptClass} from "./components/play_apis/ReadsConceptClass.tsx";
+} from "./assets/components/forms/FormsFunctionsComponent.tsx";
+import {LogicAndEvents} from "./assets/components/play_events/LogicAndEvents.tsx";
+import {ReadsConceptClass} from "./assets/components/play_apis/ReadsConceptClass.tsx";
 // js files work after you allow it on tsconfig.app.json file
 // *** and we export by default no nned to {}
-import ReadsConceptJsClass  from "./components/play_apis_js/ReadsConceptJsClass"
-import UpdateConceptJsClass from "./components/play_apis_js/UpdateConceptJsClass";
-import {LogicAndEventsJs} from "./components/play_events/LogicAndEventsJs";
-import LoginJs from "./components/understand-line-login/LoginJs";
-import DisplayInformationJs from "./components/understand-line-login/DisplayInformationJs.jsx";
+import ReadsConceptJsClass  from "./assets/components/play_apis_js/ReadsConceptJsClass"
+import UpdateConceptJsClass from "./assets/components/play_apis_js/UpdateConceptJsClass";
+import {LogicAndEventsJs} from "./assets/components/play_events/LogicAndEventsJs";
+import LoginJs from "./assets/components/understand-line-login/LoginJs";
+import DisplayInformationJs from "./assets/components/understand-line-login/DisplayInformationJs.jsx";
 
 /*Use .ts files:
 For general TypeScript code that doesn’t involve JSX syntax, such as utility functions, business logic or library code.
