@@ -74,6 +74,7 @@ export class ReadsConceptClass extends Component<Props,State> {
 
     usersTable() {
         console.log(this.users)
+
         return (
             <>
                 <div>
@@ -242,7 +243,6 @@ export class ReadsConceptClass extends Component<Props,State> {
                     {checkCreateProductSelect && <CreateConceptClass/>}
                     {checkUpdateProductSelect && <UpdateConceptClass/>}
                     {checkDeleteProductSelect && <DeleteConceptClass />}
-
                 </div>
             </>
         )

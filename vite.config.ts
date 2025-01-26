@@ -18,7 +18,6 @@ export default defineConfig({
       // This is for your dev environment, don't use this on production.
       // You need your own certificate in production
       basicSsl()
-
   ],
   define: {
       // we have to set key : value for call by process.env.<key>

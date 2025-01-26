@@ -1,5 +1,5 @@
 import {Component} from "react";
-
+// *** clear
 // *** we have to set type of props in .ts file
 // *** this is difference js and ts
 // ** if you need to use props , state you have to declare as a type
@@ -10,6 +10,10 @@ type MyProps = {
 }
 type MyState = {
     message: string
+    styles : object,
+    classesName1 : string,
+    classesName2 : string,
+    classesName3 : string
 }
 
 export class AlertMessageComponent extends Component<MyProps,MyState> {
@@ -19,7 +23,15 @@ export class AlertMessageComponent extends Component<MyProps,MyState> {
     constructor(props : MyProps) {
         super(props);
         this.state = {
-            message : props.message
+            message : props.message,
+            // ** for setting css on attributes style
+            styles : {
+                fontSize: "20px",
+                fontWeight: "bold"
+            },
+            classesName1 : "alert alert-warning mt-3",
+            classesName2 : "alert alert-primary mt-3",
+            classesName3 : "alert alert-dark mt-3",
         }
     }
 
@@ -27,7 +39,7 @@ export class AlertMessageComponent extends Component<MyProps,MyState> {
         console.log('AlertMessageComponent did mount')
     }
 
-    sayHi1 () {
+    private sayHi1 () {
         // ** JSX write inside return ( html tag ) ** by default it can not be multiple tags
         return (
             // *** in react we write style inside style={{ <attributes css>:<value> }}
@@ -37,33 +49,31 @@ export class AlertMessageComponent extends Component<MyProps,MyState> {
         )
     }
 
-    sayHi2() {
-        return <p className="alert alert-danger mt-3" style={{fontSize: "20px", fontWeight: "bold"}}>
+    private sayHi2() {
+        // ** or set styles / classes as variables
+        return <p className={this.state.classesName1} style={this.state.styles}>
             {this.state.message}
         </p>
     }
 
-    sayHi3() {
+    // *** sayHi3 and 4 are same but 4 get array from props
+    private sayHi3() {
         return (
             this.sayHiMessages.map(
                 (message : string) => (
-                <p key={message}
-                   className={"alert alert-dark mt-3"}
-                   style={{fontSize: "20px", fontWeight: "bold"}}>
+                <p key={message} className={this.state.classesName2} style={this.state.styles}>
                     {message}
                 </p>
             ))
         )
     }
 
-    sayHi4() {
-        // *** i set messages of props on <AlertMessageComponent messages={} />
+    private sayHi4() {
         return (
+            // *** set messages of props on <AlertMessageComponent messages={} />
             this.props.messages.map(
                 (message : string) => (
-                    <p key={message}
-                       className={"alert alert-warning mt-3"}
-                       style={{fontSize: "20px", fontWeight: "bold"}}>
+                    <p key={message} className={this.state.classesName3} style={this.state.styles}>
                         {message}
                     </p>
                 ))
