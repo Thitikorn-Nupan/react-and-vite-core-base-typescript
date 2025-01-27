@@ -13,6 +13,7 @@ type State = {
 type Props = {
 
 }
+
 export class ReadsConceptClass extends Component<Props,State> {
     private readonly fakeStoreApi : string[] = [
         "https://fakestoreapi.com/users?limit=5",
@@ -79,7 +80,7 @@ export class ReadsConceptClass extends Component<Props,State> {
             <>
                 <div>
                     <table className="table mt-3 w-75" style={{margin: "0 auto"}}>
-                        <thead className="table table-secondary">
+                        <thead className=" table-secondary">
                         <tr>
                             <th>Id</th>
                             <th>Email</th>
@@ -113,7 +114,7 @@ export class ReadsConceptClass extends Component<Props,State> {
             <>
                 <div>
                     <table className="table mt-3 w-100" style={{margin: "0 auto"}}>
-                        <thead className="table table-secondary">
+                        <thead className=" table-secondary">
                         <tr>
                             <th>Id</th>
                             <th>Title</th>

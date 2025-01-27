@@ -1,7 +1,9 @@
 import {ChangeEvent, Component} from "react";
 import {Robot} from "../../entities/robot.ts";
+// Clear
+type Props = {
 
-type Props = {}
+}
 
 type State = {
     option: number
@@ -95,6 +97,7 @@ export class LogicAndEvents extends Component<Props, State> {
     }
 }
 
+// IncrementAndDecrementInteger class
 type PropsIncrementAndDecrementInteger = {
     number: number
 }
@@ -102,7 +105,6 @@ type PropsIncrementAndDecrementInteger = {
 type StateIncrementAndDecrementInteger = {
     number: number
 }
-
 class IncrementAndDecrementInteger extends Component<PropsIncrementAndDecrementInteger, StateIncrementAndDecrementInteger> {
 
     private number: number
@@ -119,14 +121,14 @@ class IncrementAndDecrementInteger extends Component<PropsIncrementAndDecrementI
         console.log("IncrementAndDecrementInteger component is unmount");
     }
 
-    incrementStateNumberAfterClick = () => {
+    private incrementStateNumberAfterClick = () => {
         this.number++
         this.setState({
             number: this.number,
         })
     }
 
-    decrementStateNumberAfterClick = () => {
+    private decrementStateNumberAfterClick = () => {
         this.number--
         this.setState({
             number: this.number,
@@ -149,8 +151,11 @@ class IncrementAndDecrementInteger extends Component<PropsIncrementAndDecrementI
     }
 
 }
+// IncrementAndDecrementInteger class
 
 
+// No props but have to create prop
+// because props and state are always together
 type PropsReadAndReadsDataList = {
 
 }
@@ -178,9 +183,11 @@ class ReadAndReadsDataList extends Component<PropsReadAndReadsDataList, StateRea
         this.robotsCanChange = this.robots
     }
 
-    handleSearchByRobotId = (event:ChangeEvent<HTMLInputElement>) => {
+    // All event can work with void methods but you have to call by no return : () => <method>()
+
+    private handleSearchByRobotId = (event:ChangeEvent<HTMLInputElement>) => {
         // ** it is importance for dynamic ,don't know way but if remove this event did not work
-        // setSate() it will mark method reload after event
+        // ** setSate() it will mark method reload after event
         this.setState({})
 
         // use == it works *** == in JavaScript is used for comparing two variables, But it ignores the datatype of variable.
@@ -192,7 +199,7 @@ class ReadAndReadsDataList extends Component<PropsReadAndReadsDataList, StateRea
         }
     }
 
-    removeRobotById = (robot:Robot) => {
+    private removeRobotById = (robot:Robot) => {
         // first we have to find index by object
         const index = this.robotsCanChange.indexOf(robot)
         // remove index
@@ -201,7 +208,7 @@ class ReadAndReadsDataList extends Component<PropsReadAndReadsDataList, StateRea
         this.robots = this.robotsCanChange
     }
 
-    cloneRobot = (robotClone:Robot) => {
+    private cloneRobot = (robotClone:Robot) => {
 
         // ** key is unique If we remove some robots , This way it's good to clone robot
         const lastRid = this.robotsCanChange[this.robotsCanChange.length - 1].rid
@@ -210,15 +217,15 @@ class ReadAndReadsDataList extends Component<PropsReadAndReadsDataList, StateRea
         this.robots = this.robotsCanChange
     }
 
-    handleOnRobotIdClick = (robotId:number) => {
+    private handleOnRobotIdClick = (robotId:number) => {
         this.setState({
             robotIdSelected: robotId
         })
     }
 
-    getStyleIfRobotIdClick = (robotId:number) => {
+    private getStyleIfRobotIdClick = (robotId:number) => {
         if (robotId === this.state.robotIdSelected) {
-            return "table table-dark"
+            return "table-dark"
         }
         return ""
     }
@@ -238,7 +245,7 @@ class ReadAndReadsDataList extends Component<PropsReadAndReadsDataList, StateRea
                     </div>
                     <table className="table mt-3 w-50" style={{margin: "0 auto"}}>
 
-                        <thead className="table table-dark">
+                        <thead className="table-dark">
                         <tr>
                             <th>Id</th>
                             <th>Code Name</th>
@@ -251,6 +258,7 @@ class ReadAndReadsDataList extends Component<PropsReadAndReadsDataList, StateRea
                         {
                             this.robotsCanChange.map((robot) => (
                                 <tr key={robot.rid}
+                                    style={{"cursor": "pointer"}}
                                     // *** this way work Good for function void and no parameter as type event
                                     onClick={() => this.handleOnRobotIdClick(robot.rid)}
                                     // *** If function has a return You don't need to use arrow function
@@ -264,12 +272,11 @@ class ReadAndReadsDataList extends Component<PropsReadAndReadsDataList, StateRea
                                         {!robot.active && <strong className={"BF btn btn-danger m-lg-2"}>False</strong>}
                                     </td>
                                     <td>
-                                        <button className={"btn btn-warning"}
-                                                onClick={() => this.removeRobotById(robot)}>Remove
-                                        </button>
-                                        <button className={"btn btn-info m-lg-2"}
-                                                onClick={() => this.cloneRobot(robot)}>Clone
-                                        </button>
+                                        <button className={"btn btn-warning"} onClick={() => this.removeRobotById(robot)}>Remove</button>
+                                        {/*
+
+                                        */}
+                                        <button className={"btn btn-info m-lg-2"} onClick={() => this.cloneRobot(robot)}>Clone</button>
                                     </td>
                                 </tr>
                             ))
