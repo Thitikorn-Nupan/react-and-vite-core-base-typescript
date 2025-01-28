@@ -2,8 +2,7 @@ import {Component} from "react";
 
 export class DeleteConceptClass extends Component {
 
-    handleRequestDeleteMethod = async (id: number) => {
-        // console.log(this.state.values[0],this.state.values[1])
+    private handleRequestDeleteMethod = async (id: number) => {
         const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
             method: "DELETE",
         })
@@ -16,7 +15,7 @@ export class DeleteConceptClass extends Component {
         return (
             <div className="mt-4 w-100">
                 <table className="table mt-3 w-75" style={{margin: "0 auto"}}>
-                    <thead className="table table-secondary">
+                    <thead className="table-secondary">
                     <tr>
                         <th>Title</th>
                         <th>Price</th>
@@ -34,9 +33,7 @@ export class DeleteConceptClass extends Component {
                         <td><img width={"60px"} src={"https://i.pravatar.cc"}/></td>
                         <td> electronic</td>
                         <td>
-                            <button className={"btn btn-warning"}
-                                    onClick={() => this.handleRequestDeleteMethod(7)}>Delete
-                            </button>
+                            <button className={"btn btn-warning"} onClick={() => this.handleRequestDeleteMethod(7)}>Delete</button>
                         </td>
                     </tr>
                     </tbody>

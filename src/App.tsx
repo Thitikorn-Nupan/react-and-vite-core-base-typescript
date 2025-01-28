@@ -12,10 +12,10 @@ import {
     Form5setStateAsObject, Form6setStateAsObjectDynamicInputs
 } from "./assets/components/forms/FormsFunctionsComponent.tsx";
 import {LogicAndEvents} from "./assets/components/play_events/LogicAndEvents.tsx";
-import {ReadsConceptClass} from "./assets/components/play_apis/ReadsConceptClass.tsx";
+import {ReadsManageCrudConceptClass} from "./assets/components/play_apis/ReadsManageCrudConceptClass.tsx";
 // js files work after you allow it on tsconfig.app.json file
 // *** and we export by default no nned to {}
-import ReadsConceptJsClass  from "./assets/components/play_apis_js/ReadsConceptJsClass"
+// import ReadsConceptJsClass  from "./assets/components/play_apis_js/ReadsConceptJsClass"
 import UpdateConceptJsClass from "./assets/components/play_apis_js/UpdateConceptJsClass";
 import {LogicAndEventsJs} from "./assets/components/play_events/LogicAndEventsJs";
 import LoginJs from "./assets/components/understand-line-login/LoginJs";
@@ -73,13 +73,18 @@ function App() {
                           <LogicAndEventsJs/>
                       }/>
                       <Route path={"apply-api"} element={
-                          <ReadsConceptClass/>
+                          <ReadsManageCrudConceptClass/>
                       }/>
 
-                      <Route path={"apply-api-js"} element={
-                          <ReadsConceptJsClass/>
-                      }/>
-                      {/* param as ?key=<value>*/}
+                      <Route path={"apply-api-js"}/> {
+                      /*
+                        element={<ReadsConceptJsClass/>}
+                      */
+                      }
+                      {/**
+                        param as ?key=<value>
+                        example : /users/edit?id=10
+                      */}
                       <Route path={"users/edit"} element={
                           <UpdateConceptJsClass/>
                       }/>

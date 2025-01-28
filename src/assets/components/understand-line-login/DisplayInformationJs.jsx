@@ -5,7 +5,9 @@ import {jwtDecode} from "jwt-decode";
 
 
 export class DisplayInformationJs extends Component {
+
     fakeStoreApi = "https://fakestoreapi.com/users?limit=5"
+
     constructor(props) {
         super(props);
         this.state = {
@@ -112,8 +114,7 @@ export class DisplayInformationJs extends Component {
                             <a className="btn btn-danger" onClick={this.handleLogout}>Logout</a>
                         </div>
                         <div className="card-footer">
-                            <small className="text-muted">You can do anything
-                                until {this.state.jwtPayload.exp}</small>
+                            <small className="text-muted">You can do anything until {this.state.jwtPayload.exp}</small>
                         </div>
                     </div>
                 </div>
@@ -132,7 +133,7 @@ export class DisplayInformationJs extends Component {
             <>
                 <div>
                     <table className="table mt-3 w-75" style={{margin: "0 auto"}}>
-                        <thead className="table table-secondary">
+                        <thead className=" table-secondary">
                         <tr>
                             <th>Id</th>
                             <th>Email</th>

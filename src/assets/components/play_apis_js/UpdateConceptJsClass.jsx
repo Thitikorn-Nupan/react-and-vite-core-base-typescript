@@ -19,8 +19,9 @@ class UpdateConceptJsClass extends Component {
     }
 
     componentDidMount = async () => {
-        console.log('componentDidMount() is initial (Data fetched)')
 
+        console.log('componentDidMount() is initial (Data fetched)')
+        // get id as param from url
         const id = Number(this.props.location.search.slice(4))
         const users = await fetch(this.fakeStoreApi+`/${id}`);
         const resultUser = await users.json(); // **
@@ -58,7 +59,7 @@ class UpdateConceptJsClass extends Component {
     // handle function can specify async function
     handleRequestPutMethod = async (event) => {
         event.preventDefault()
-        // console.log(this.state.id)
+        console.log(this.state.id,this.state.email,this.state.password,this.state.username)
         const response = await fetch(this.fakeStoreApi+`/${this.state.id}`, {
             method: "PUT",
             body: JSON.stringify(
@@ -100,8 +101,7 @@ class UpdateConceptJsClass extends Component {
                 <form className={"form-control p-2 "}>
                     <div className="mb-3">
                         Id
-                        <input type="number" className="form-control" name="id" placeholder={this.state.id}
-                               onChange={this.handleInputChange}/>
+                        <input type="number" className="form-control" name="id" value={this.state.id} onChange={this.handleInputChange} readOnly={true}/>
                     </div>
                     <div className="mb-3">
                         Email
@@ -115,8 +115,7 @@ class UpdateConceptJsClass extends Component {
                     </div>
                     <div className="mb-3">
                         Password
-                        <input type="password" className="form-control" name="password"
-                               placeholder={this.state.password} onChange={this.handleInputChange}/>
+                        <input type="password" className="form-control" name="password" placeholder={this.state.password} onChange={this.handleInputChange}/>
                     </div>
                     {/* onSubmit work with button type submit */}
                     <button type="submit" className="btn btn-primary">Submit</button>

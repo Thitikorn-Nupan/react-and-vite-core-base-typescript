@@ -5,50 +5,54 @@ import {CreateConceptClass} from "./CreateConceptClass.tsx";
 import {UpdateConceptClass} from "./UpdateConceptClass.tsx";
 import {DeleteConceptClass} from "./DeleteConceptClass.tsx";
 
+// Clear
 type State = {
     users: User[],
-    products: Product[] ,
-    option : number
+    products: Product[],
+    option: number
 }
-type Props = {
+type Props = {}
 
-}
+export class ReadsManageCrudConceptClass extends Component<Props, State> {
 
-export class ReadsConceptClass extends Component<Props,State> {
-    private readonly fakeStoreApi : string[] = [
+    private readonly fakeStoreApi: string[] = [
         "https://fakestoreapi.com/users?limit=5",
         "https://fakestoreapi.com/products?limit=5"
     ]
-    private users : User[] = []
-    private products : Product[] = []
+
+    private users: User[] = []
+    private products: Product[] = []
+
     constructor(props: Props) {
         super(props);
+        // initial state
         this.state = {
-            users : [],
-            products : [],
-            option : -1
+            users: [],
+            products: [],
+            option: -1
         }
     }
 
-    // it works just once time when component is render
+    // it works just once time when component is rendered
     componentDidMount = async () => {
-        console.log('componentDidMount() is initial (Data fetched)')
-        const users = await fetch(this.fakeStoreApi[0]);
-        const products = await fetch(this.fakeStoreApi[1]);
-        const resultUser = await users.json();
-        const resultProducts = await products.json();
+        // console.log('componentDidMount() is initial (Data fetched)')
+        const usersFetch = await fetch(this.fakeStoreApi[0]);
+        const productsFetch = await fetch(this.fakeStoreApi[1]);
+
+        const users = await usersFetch.json();
+        const products = await productsFetch.json();
 
         this.setState({
-                users: resultUser,
-                products: resultProducts
-            }
-        )
+            users: users,
+            products: products
+        })
 
+        // if you use .js this method it's not nessessory
         this.setupUsersAndProductsObjects()
     }
 
     // work
-    setupUsersAndProductsObjects = ()=> {
+    private setupUsersAndProductsObjects = () => {
         console.log(this.state.users?.length) // use .? if you know it may be null at the first time
         for (let i = 0; i < this.state.users?.length; i++) {
             const user = new User(
@@ -73,8 +77,15 @@ export class ReadsConceptClass extends Component<Props,State> {
 
     }
 
-    usersTable() {
-        console.log(this.users)
+    private handleChangeOption = async (event: ChangeEvent<HTMLInputElement>) => {
+        this.setState({
+            option: Number(event.target?.value)
+        })
+    }
+
+    private usersTable() {
+
+        // console.log(this.users)
 
         return (
             <>
@@ -108,13 +119,15 @@ export class ReadsConceptClass extends Component<Props,State> {
         )
     }
 
-    productsTable() {
-        console.log(this.products)
+    private productsTable() {
+
+        // console.log(this.products)
+
         return (
             <>
                 <div>
                     <table className="table mt-3 w-100" style={{margin: "0 auto"}}>
-                        <thead className=" table-secondary">
+                        <thead className="table-secondary">
                         <tr>
                             <th>Id</th>
                             <th>Title</th>
@@ -145,16 +158,13 @@ export class ReadsConceptClass extends Component<Props,State> {
         )
     }
 
-    handleChangeOption = async (event : ChangeEvent<HTMLInputElement>) => {
-        this.setState({
-            option: Number(event.target?.value)
-        })
-    }
+
 
     render() {
         // console.log(this.state.data);
         // console.log(this.users,this.products)
-        let checkUsersExist ,checkProductsExist,checkCreateProductSelect,checkUpdateProductSelect,checkDeleteProductSelect// checkProductsExist// , checkProductsExist,checkCreateProductSelect,checkUpdateProductSelect,checkDeleteProductSelect
+        let checkUsersExist, checkProductsExist, checkCreateProductSelect, checkUpdateProductSelect,
+            checkDeleteProductSelect// checkProductsExist// , checkProductsExist,checkCreateProductSelect,checkUpdateProductSelect,checkDeleteProductSelect
         switch (this.state.option) {
             case 1:
                 checkUsersExist = true
@@ -174,8 +184,6 @@ export class ReadsConceptClass extends Component<Props,State> {
             default:
                 break
         }
-
-
 
         return (
             <>
@@ -239,11 +247,13 @@ export class ReadsConceptClass extends Component<Props,State> {
                             </label>
                         </div>
                     </div>
+
                     {checkUsersExist && this.usersTable()}
                     {checkProductsExist && this.productsTable()}
+
                     {checkCreateProductSelect && <CreateConceptClass/>}
                     {checkUpdateProductSelect && <UpdateConceptClass/>}
-                    {checkDeleteProductSelect && <DeleteConceptClass />}
+                    {checkDeleteProductSelect && <DeleteConceptClass/>}
                 </div>
             </>
         )

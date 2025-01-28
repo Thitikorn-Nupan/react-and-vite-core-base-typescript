@@ -1,11 +1,11 @@
 import {Component} from "react";
-import covertClassToFunction from "./covertClassToFunction.jsx";
+// import {covertClassToFunction} from "./covertClassToFunction.jsx";
 
 
 
 class ReadsConceptJsClass extends Component {
 
-    fakeStoreApi  = [
+    fakeStoreApi = [
         "https://fakestoreapi.com/users?limit=5",
         "https://fakestoreapi.com/products?limit=5",
         "https://fakestoreapi.com/users"
@@ -14,9 +14,9 @@ class ReadsConceptJsClass extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            users : [],
-            products : [],
-            option : -1
+            users: [],
+            products: [],
+            option: -1
         }
     }
 
@@ -38,14 +38,13 @@ class ReadsConceptJsClass extends Component {
     }
 
 
-
     usersTable() {
         console.log(this.state.users)
         return (
             <>
                 <div>
                     <table className="table mt-3 w-100" style={{margin: "0 auto"}}>
-                        <thead className="table table-secondary">
+                        <thead className=" table-secondary">
                         <tr>
                             <th>Id</th>
                             <th>Email</th>
@@ -65,8 +64,12 @@ class ReadsConceptJsClass extends Component {
                                         <td>{user.username}</td>
                                         <td>{user.password}</td>
                                         <td>
-                                            <button className={"btn btn-warning"} onClick={() => this._editUser(user.id)}>edit</button>
-                                            <button className={"btn btn-danger"} onClick={() => this._deleteUser(user.id)}>delete</button>
+                                            <button className={"btn btn-warning"}
+                                                    onClick={() => this._editUser(user.id)}>edit
+                                            </button>
+                                            <button className={"btn btn-danger"}
+                                                    onClick={() => this._deleteUser(user.id)}>delete
+                                            </button>
                                         </td>
                                     </tr>
                                 ))
@@ -83,14 +86,14 @@ class ReadsConceptJsClass extends Component {
         this.props.navigate(`/users/edit?id=${id}`);
     }
 
-    _deleteUser =  async (id) => {
-       await fetch(this.fakeStoreApi[2]+`/${id}`,{
-            method:"DELETE"
-        }).then(res  => {
-           if (res.status === 200) {
-               alert('deleted successfully')
-           }
-       })
+    _deleteUser = async (id) => {
+        await fetch(this.fakeStoreApi[2] + `/${id}`, {
+            method: "DELETE"
+        }).then(res => {
+            if (res.status === 200) {
+                alert('deleted successfully')
+            }
+        })
 
     }
 
@@ -100,7 +103,7 @@ class ReadsConceptJsClass extends Component {
             <>
                 <div>
                     <table className="table mt-3 w-100" style={{margin: "0 auto"}}>
-                        <thead className="table table-secondary">
+                        <thead className=" table-secondary">
                         <tr>
                             <th>Id</th>
                             <th>Title</th>
@@ -131,7 +134,7 @@ class ReadsConceptJsClass extends Component {
         )
     }
 
-    handleChangeOption = async (event ) => {
+    handleChangeOption = async (event) => {
         this.setState({
             option: Number(event.target?.value)
         })
@@ -140,7 +143,7 @@ class ReadsConceptJsClass extends Component {
     render() {
         // console.log(this.state.data);
         // console.log(this.users,this.products)
-        let checkUsersExist ,checkProductsExist // ,checkCreateProductSelect,checkUpdateProductSelect,checkDeleteProductSelect// checkProductsExist// , checkProductsExist,checkCreateProductSelect,checkUpdateProductSelect,checkDeleteProductSelect
+        let checkUsersExist, checkProductsExist // ,checkCreateProductSelect,checkUpdateProductSelect,checkDeleteProductSelect// checkProductsExist// , checkProductsExist,checkCreateProductSelect,checkUpdateProductSelect,checkDeleteProductSelect
         switch (this.state.option) {
             case 1:
                 checkUsersExist = true
@@ -149,7 +152,6 @@ class ReadsConceptJsClass extends Component {
                 checkProductsExist = true
                 break;
         }
-
 
 
         return (
@@ -190,8 +192,6 @@ class ReadsConceptJsClass extends Component {
         )
     }
 
-
-
 }
 
-export default covertClassToFunction(ReadsConceptJsClass)
+// export default covertClassToFunction(ReadsConceptJsClass)
