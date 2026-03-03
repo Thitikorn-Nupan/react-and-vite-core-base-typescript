@@ -28,10 +28,10 @@ export class DeleteConceptClass extends Component {
                     <tbody>
                     <tr>
                         <td>test product</td>
-                        <td> 13.5</td>
-                        <td> lorem ipsum set</td>
-                        <td><img width={"60px"} src={"https://i.pravatar.cc"}/></td>
-                        <td> electronic</td>
+                        <td>13.5</td>
+                        <td>lorem ipsum set</td>
+                        <td><img width={"60px"} src={"https://i.pravatar.cc"} alt={"..."}/></td>
+                        <td>electronic</td>
                         <td>
                             <button className={"btn btn-warning"} onClick={() => this.handleRequestDeleteMethod(7)}>Delete</button>
                         </td>

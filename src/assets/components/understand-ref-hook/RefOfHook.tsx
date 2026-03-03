@@ -3,39 +3,41 @@ import * as React from "react";
 
 function Counter() {
 
-    const hasClickedButton = useRef(false); // The thing about setting the React ref to a new value is that it doesn't trigger
-
+    // The thing about setting the React ref to a new value is that it doesn't trigger
+    const hasClickedButton = useRef(false);
     const [count, setCount] = useState(0);
 
     function onClick() { // work after clicked
-
         const newCount = count + 1;
-
         setCount(newCount);
-
         hasClickedButton.current = !hasClickedButton.current;
     }
 
-    console.log('Has clicked button ? ' + hasClickedButton.current);
+    // console.log('Has clicked button ? ' + hasClickedButton.current);
 
     return (
-        <div className={"text-center"}>
-            <p>{count}</p>
-            <button className={"btn btn-success"} type="button" onClick={onClick}>
-                Increase
-            </button>
+        <div className="container w-50 card p-5 mt-4">
+            <div className={"text-center"}>
+                <p>{count}</p>
+                <button className={"btn btn-success"}
+                        type="button"
+                        onClick={onClick}>
+                    Increase
+                </button>
+            </div>
         </div>
     );
 }
 
 function Counter2() {
+    // Rule of thumb: Whenever you need to track state in your React component which shouldn't trigger a re-render of your component, you can use React's useRef Hooks to create an instance variable for it.
     const [count, setCount] = useState(0);
 
     function onClick() {
         setCount(count + 1);
     }
 
-    const isFirstRender = useRef(true); // Rule of thumb: Whenever you need to track state in your React component which shouldn't trigger a re-render of your component, you can use React's useRef Hooks to create an instance variable for it.
+    const isFirstRender = useRef(true);
 
     useEffect(() => { // do first
         if (isFirstRender.current) {
@@ -47,21 +49,20 @@ function Counter2() {
                   re-render.
                 `);
         }
-
     });
-    console.log('Has clicked button ? ' + isFirstRender.current); // first case will be true
     return (
-        <div className={"text-center"}>
-            <p>{count}</p>
-            <button className={"btn btn-success"} type="button" onClick={onClick}>
-                Increase
-            </button>
-
-            {/*
-                Only works because setCount triggers a re-render.
-                Just changing the ref's current value doesn't trigger a re-render.
-            */}
-            <p>{isFirstRender.current ? 'First render.' : 'Re-render.'}</p>
+        <div className="container w-50 card p-5 mt-4">
+            <div className={"text-center"}>
+                <p>{count}</p>
+                <button className={"btn btn-success"} type="button" onClick={onClick}>
+                    Increase
+                </button>
+                {/*
+                    Only works because setCount triggers a re-render.
+                    Just changing the ref's current value doesn't trigger a re-render.
+                */}
+                <p>{isFirstRender.current ? 'First render.' : 'Re-render.'}</p>
+            </div>
         </div>
     );
 }
@@ -83,46 +84,42 @@ interface ComponentWithDomApiProps {
     isFocus: boolean;
 }
 
-function ComponentWithDomApi({ label, value, isFocus }: ComponentWithDomApiProps) {
+function ComponentWithDomApi({label, value, isFocus}: ComponentWithDomApiProps) {
     const ref = useRef<HTMLInputElement>(); // (1) we are using React's useRef Hook to create a ref object (1)
-
     useEffect(() => {
         if (isFocus) {
             ref.current?.focus(); // (3) we can use the DOM node, which is now assigned to the ref's current property, to interact with its API.
         }
     }, [isFocus]);
-
     return (
         <label>
-            {
-                /* (2)  In this case, we don't assign any initial value to it, because that will be done in the next step  */
-            }
+            {/* (2)  In this case, we don't assign any initial value to it, because that will be done in the next step  */}
             {label}: <input className={"form-control"} type="text" value={value}/>
         </label>
     );
 }
 
-function Input2() {
 
+function Input2() {
     const [text, setText] = useState('Input some text...');
 
-    function handleOnChange(event : React.ChangeEvent<HTMLInputElement>) {
+    function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
         setText(event.target.value);
     }
-
-    const ref : React.MutableRefObject<any> = useRef();
-
+    const ref: React.MutableRefObject<any> = useRef();
 
     useEffect(() => {
         // optional
-        const { width } = ref.current.getBoundingClientRect();
+        const {width} = ref.current.getBoundingClientRect();
         document.title = `Width:${width}`; // show on browser tap <title>Width:126.28125</title>
     }, []);
+
     return (
-        <div>
-            Input2 : <input className={"form-control"} type="text" value={text} onChange={handleOnChange} />
+        <div className={"mt-4"}>
+            Input2 : <input className={"form-control"} type="text" value={text} onChange={handleOnChange}/>
             <div>
-                <span ref={ref}>{text}</span> {/* When a ref is passed to an element in render, a reference to the node becomes accessible at the current attribute of the ref. */}
+                {/* When a ref is passed to an element in render, a reference to the node becomes accessible at the current attribute of the ref. */}
+                <span ref={ref}>{text}</span>
             </div>
         </div>
     );
@@ -133,17 +130,18 @@ function Input3() {
 
     const [text, setText] = useState('Input some text...');
 
-    function handleOnChange(event : React.ChangeEvent<HTMLInputElement>) {
+    function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
         setText(event.target.value);
     }
     // ** You may not use the ref attribute on function components because they don’t have instances
     const ref = createRef<HTMLInputElement>();
 
     return (
-        <div>
-            Input3 : <input className={"form-control"} type="text" value={text} onChange={handleOnChange} />
+        <div className={"mt-4 mb-4"}>
+            Input3 : <input className={"form-control"} type="text" value={text} onChange={handleOnChange}/>
             <div>
-                <span ref={ref}>{text}</span> {/* When a ref is passed to an element in render, a reference to the node becomes accessible at the current attribute of the ref. */}
+                {/* When a ref is passed to an element in render, a reference to the node becomes accessible at the current attribute of the ref. */}
+                <span ref={ref}>{text}</span>
             </div>
         </div>
     );
@@ -151,15 +149,13 @@ function Input3() {
 
 const RefOfHook = () => {
     return (
-        <>
-            <div className={"container"}>
-                {Counter()}
-                {Counter2()}
-                {Input()} {/* can't edit */}
-                {Input2()}
-                {Input3()}
-            </div>
-        </>
+        <div className={"container card w-50"}>
+            {Counter()}
+            {Counter2()}
+            {Input()} {/* can't edit */}
+            {Input2()}
+            {Input3()}
+        </div>
     )
 }
 

@@ -9,7 +9,6 @@ class LoginJs extends Component {
         liff.init({liffId: process.env.LIFF_ID}).then(() => console.log('initial liff id'))
     }
 
-
     handleLogin = (event) => {
         // You can use liff.ready even before the initialization of the LIFF app by liff.init() has finished.
         liff.ready.then(
@@ -21,14 +20,11 @@ class LoginJs extends Component {
 
     render() {
         return (
-            <>
-                <div className={"container text-center"}>
-                    <button className={"btn btn-success mt-4"} onClick={this.handleLogin}>Line Login</button>
-                </div>
-            </>
+            <div className={"container text-center"}>
+                <button className={"btn btn-success mt-4"} onClick={this.handleLogin}>Line Login</button>
+            </div>
         )
     }
-
 }
 
 export default covertClassToFunction(LoginJs)

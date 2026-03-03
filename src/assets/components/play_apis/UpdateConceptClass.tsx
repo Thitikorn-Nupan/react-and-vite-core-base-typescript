@@ -1,4 +1,5 @@
 import {ChangeEvent, Component} from "react";
+
 // Clear
 type Props = {}
 type State = { // *** specify multiple type if you are not sure
@@ -8,7 +9,6 @@ type State = { // *** specify multiple type if you are not sure
     image: string | null,
     category: string | null,
 }
-
 export class UpdateConceptClass extends Component<Props, State> {
 
     constructor(props: Props) {
@@ -23,70 +23,42 @@ export class UpdateConceptClass extends Component<Props, State> {
         }
     }
 
-
-
     private handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        // **
-        // const name = event.target.name; // name it means we get name attribute on input tag
-        // console.log(`name attribute is ${name}`)
-        const value = event.target.value; // value hols as value
-
+        // ** const name = event.target.name; // name it means we get name attribute on input tag
+        const value : string = event.target.value; // value hols as value
         // ** way to set array of state
-        this.setState({
-            title: value
-        })
-
+        this.setState({title: value})
     }
 
     private handlePriceChange = (event: ChangeEvent<HTMLInputElement>) => {
-        // **
-        const value = event.target.value; // value hols as value
-
+        const value : string = event.target.value; // value hols as value
         // ** way to set array of state
-        this.setState({
-            price: Number(value)
-        })
-
+        this.setState({price: Number(value)})
     }
 
     private handleDescriptionChange = (event: ChangeEvent<HTMLInputElement>) => {
-        // **
-        const value = event.target.value; // value hols as value
-
+        const value : string = event.target.value; // value hols as value
         // ** way to set array of state
-        this.setState({
-            description: value
-        })
+        this.setState({description: value})
 
     }
 
     private handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-        // **
-        const value = event.target.value; // value hols as value
-
+        const value : string = event.target.value; // value hols as value
         // ** way to set array of state
-        this.setState({
-            image: value
-        })
-
+        this.setState({image: value})
     }
 
 
     private handleCategoryChange = (event: ChangeEvent<HTMLInputElement>) => {
-        // **
-        const value = event.target.value; // value hols as value
-
+        const value : string = event.target.value; // value hols as value
         // ** way to set array of state
-        this.setState({
-            category: value
-        })
-
+        this.setState({category: value})
     }
 
-    // Good way
-    // handle function can specify async function
+    // Good way // handle function can specify async function
     private handleRequestPutMethod = async (id: number) => {
-        console.log(this.state.title, this.state.price,this.state.description,this.state.image);
+        // console.log(this.state.title, this.state.price,this.state.description,this.state.image);
         const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
             method: "PUT",
             body: JSON.stringify(
@@ -111,30 +83,41 @@ export class UpdateConceptClass extends Component<Props, State> {
                 <form className={"form-control p-2"}>
                     <div className="mb-3">
                         Title
-                        <input type="text" className="form-control" name="title"
+                        <input type="text"
+                               className="form-control"
+                               name="title"
                                onChange={this.handleTitleChange}/>
                     </div>
                     <div className="mb-3">
                         Price
-                        <input type="number" className="form-control" name="price"
+                        <input type="number"
+                               className="form-control"
+                               name="price"
                                onChange={this.handlePriceChange}/>
                     </div>
                     <div className="mb-3">
                         Description
-                        <input type="text" className="form-control" name="description"
+                        <input type="text"
+                               className="form-control"
+                               name="description"
                                onChange={this.handleDescriptionChange}/>
                     </div>
                     <div className="mb-3">
                         Image Url
-                        <input type="text" className="form-control" name="image"
+                        <input type="text"
+                               className="form-control"
+                               name="image"
                                onChange={this.handleImageChange}/>
                     </div>
                     <div className="mb-3">
                         Category
-                        <input type="text" className="form-control" name="category"
+                        <input type="text"
+                               className="form-control"
+                               name="category"
                                onChange={this.handleCategoryChange}/>
                     </div>
-                    <button type="button" className="btn btn-primary" onClick={
+                    <button type="button"
+                            className="btn btn-primary" onClick={
                         () => this.handleRequestPutMethod(7)
                     }>Submit
                     </button>

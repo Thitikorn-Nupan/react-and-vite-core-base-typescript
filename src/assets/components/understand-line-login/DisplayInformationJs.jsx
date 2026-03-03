@@ -80,7 +80,7 @@ export class DisplayInformationJs extends Component {
         this.props.navigate('/line-login')
     }
 
-    loadingComponent () {
+    loadingComponent() {
         return (
             <div className={"container text-center mt-4"}>
                 <div className="spinner-border  text-warning" role="status">
@@ -90,39 +90,32 @@ export class DisplayInformationJs extends Component {
         )
     }
 
-
-
     cartInformation() {
         return (
-            <>
-                <div className={"container text-center mt-4"}>
-                    <div className="card w-75" style={{"margin": "0 auto"}}>
-                        <img src={this.state.profile.pictureUrl} className="card-img-top p-lg-3" alt="..."/>
-                        <div className="card-body">
-                            <h5 className="card-title">Name : {this.state.profile.name}</h5>
-                            <h6 className="card-title">Status Message : {this.state.profile.statusMessage}</h6>
-
-                            <p className="card-text">
-                                ***** Detail Of Jwt Payload *****
-                                <br></br>
-                                Iat (Issue At Time) : <b>{this.state.jwtPayload.iat}</b>
-                                <br></br>
-                                Exp (Expiration Time): <b>{this.state.jwtPayload.exp}</b>
-                                <br></br>
-                                Email (Line Account) : <b>{this.state.jwtPayload.email}</b>
-                            </p>
-                            <a className="btn btn-danger" onClick={this.handleLogout}>Logout</a>
-                        </div>
-                        <div className="card-footer">
-                            <small className="text-muted">You can do anything until {this.state.jwtPayload.exp}</small>
-                        </div>
+            <div className={"container text-center mt-4"}>
+                <div className="card w-75" style={{"margin": "0 auto"}}>
+                    <img src={this.state.profile.pictureUrl} className="card-img-top p-lg-3" alt="..."/>
+                    <div className="card-body">
+                        <h5 className="card-title">Name : {this.state.profile.name}</h5>
+                        <h6 className="card-title">Status Message : {this.state.profile.statusMessage}</h6>
+                        <p className="card-text">
+                            ***** Detail Of Jwt Payload *****
+                            <br></br>
+                            Iat (Issue At Time) : <b>{this.state.jwtPayload.iat}</b>
+                            <br></br>
+                            Exp (Expiration Time): <b>{this.state.jwtPayload.exp}</b>
+                            <br></br>
+                            Email (Line Account) : <b>{this.state.jwtPayload.email}</b>
+                        </p>
+                        <a className="btn btn-danger" onClick={this.handleLogout}>Logout</a>
+                    </div>
+                    <div className="card-footer">
+                        <small className="text-muted">You can do anything until {this.state.jwtPayload.exp}</small>
                     </div>
                 </div>
-
-            </>
+            </div>
         )
     }
-
 
     _editUser(id) {
         this.props.navigate(`/users/edit?id=${id}`);
@@ -130,44 +123,43 @@ export class DisplayInformationJs extends Component {
 
     usersTable() {
         return (
-            <>
-                <div>
-                    <table className="table mt-3 w-75" style={{margin: "0 auto"}}>
-                        <thead className=" table-secondary">
-                        <tr>
-                            <th>Id</th>
-                            <th>Email</th>
-                            <th>Username</th>
-                            <th>Password</th>
-                            <th>Options</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            this.state.users?.map(
-                                (user) => (
-                                    // if I called by this.handle2OnRowClick ** student will be undefined
-                                    <tr key={user.id}>
-                                        <td>{user.id}</td>
-                                        <td>{user.email}</td>
-                                        <td>{user.username}</td>
-                                        <td>{user.password}</td>
-                                        <td>
-                                            <button className={"btn btn-warning"} onClick={() => this._editUser(user.id)} >edit</button>
-                                            <button className={"btn btn-danger"}>delete</button>
-                                        </td>
-                                    </tr>
-                                ))
-                        }
-                        </tbody>
-                    </table>
-                </div>
-            </>
+            <div>
+                <table className="table mt-3 w-75" style={{margin: "0 auto"}}>
+                    <thead className=" table-secondary">
+                    <tr>
+                        <th>Id</th>
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Options</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        this.state.users?.map((user) => (
+                            // if I called by this.handle2OnRowClick ** student will be undefined
+                            <tr key={user.id}>
+                                <td>{user.id}</td>
+                                <td>{user.email}</td>
+                                <td>{user.username}</td>
+                                <td>{user.password}</td>
+                                <td>
+                                    <button className={"btn btn-warning"}
+                                            onClick={() => this._editUser(user.id)}>edit
+                                    </button>
+                                    <button className={"btn btn-danger"}>delete</button>
+                                </td>
+                            </tr>
+                        ))
+                    }
+                    </tbody>
+                </table>
+            </div>
         )
     }
 
     render() {
-        let component,subComponent
+        let component, subComponent
         if (this.state.enablePage) {
             component = this.cartInformation()
             subComponent = this.usersTable()
@@ -176,20 +168,17 @@ export class DisplayInformationJs extends Component {
             subComponent = null
         }
         return (
-            <>
-                <div>
-                    {/*
+            <div>
+                {/*
                         Solution 1
                         Inline If-Else with Conditional Operator
                         condition ? true : false.
                         {this.state.enablePage ? this.cartInformation() : this.loadingCart()}
                      */}
-
-                    {/* Solution 2 */}
-                    {component}
-                    {this.state.users.length === 0 ? this.loadingComponent() : subComponent}
-                </div>
-            </>
+                {/* Solution 2 */}
+                {component}
+                {this.state.users.length === 0 ? this.loadingComponent() : subComponent}
+            </div>
         )
     }
 }

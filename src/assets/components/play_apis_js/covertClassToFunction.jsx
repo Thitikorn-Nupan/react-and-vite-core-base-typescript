@@ -18,7 +18,6 @@ function mangeProps(AnyClassComponent) {
 }
 
 function covertClassToFunction(AnyClassComponent) { // Parameter: The AnyComponent parameter remains the same, indicating that the function takes a generic component as input.
-
     return mangeProps(AnyClassComponent);
 }
 

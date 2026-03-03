@@ -8,6 +8,21 @@ type MyState = {
 
 export class MenubarComponent extends Component<MyProps, MyState> {
 
+    private readonly routeLinks : {label:string,to:string}[] = [
+        {label : 'Alerts Message With Class' , to: '/alerts-with-classes'},
+        {label : 'Forms Inside Class' , to: '/forms-with-classes'},
+        {label : 'Forms Inside Function' , to: '/forms-with-functions'},
+        {label : 'Lists/Tables Inside Class' , to: '/lists-with-classes'},
+        {label : 'Apply With Events' , to: '/apply-events'},
+        {label : 'Apply Js With Events' , to: '/apply-events-js'},
+        {label : 'Lists/Tables Inside Class' , to: '/apply-api'},
+        {label : 'Apply With Api' , to: '/apply-api'},
+        {label : 'Apply Js With Api' , to: '/apply-api-js'},
+        {label : 'Line Login' , to: '/line-login'},
+        {label : 'Ref Of Hook' , to: '/ref-of-hook'},
+        {label : 'Ref Of Hook Add Styles' , to: '/ref-of-hook-add-styles'},
+    ]
+
     constructor(props: MyProps) {
         super(props);
         this.state = {
@@ -36,48 +51,26 @@ export class MenubarComponent extends Component<MyProps, MyState> {
                                     <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                        aria-expanded="false">Topic
                                     </a>
+                                    {/* <Link> is used to set the URL and keep track of browsing history. */}
                                     <ul className="dropdown-menu">
-                                        {/* <Link> is used to set the URL and keep track of browsing history. */}
                                         <li>
-                                            <Link className="dropdown-item" to={"/alerts-with-classes"}>
-                                                Alerts Message With Class
-                                            </Link>
+                                            {this.routeLinks.map((route : {label:string,to:string} , index : number) =>
+                                                <Link className="dropdown-item" key={index} to={route.to}>
+                                                    {route.label}
+                                                </Link>
+                                            )}
                                         </li>
-                                        <li>
-                                            <Link className="dropdown-item" to={"/forms-with-classes"}>
-                                                Forms Inside Class
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link className="dropdown-item" to={"/forms-with-functions"}>
-                                                Forms Inside Function
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link className="dropdown-item" to={"/lists-with-classes"}>
-                                                Lists/Tables Inside Class
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link className="dropdown-item" to={"/apply-events"}>
-                                                Apply With Events
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link className="dropdown-item" to={"/apply-events-js"}>
-                                                Apply Js With Events
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link className="dropdown-item" to={"/apply-api"}>Apply With Api</Link>
-                                        </li>
-                                        <li>
-                                            <Link className="dropdown-item" to={"/apply-api-js"}>
-                                                Apply Js With Api
-                                            </Link></li>
+                                        {/*<li><Link className="dropdown-item" to={"/alerts-with-classes"}>Alerts Message With Class</Link></li>
+                                        <li><Link className="dropdown-item" to={"/forms-with-classes"}>Forms Inside Class</Link></li>
+                                        <li><Link className="dropdown-item" to={"/forms-with-functions"}>Forms Inside Function</Link></li>
+                                        <li><Link className="dropdown-item" to={"/lists-with-classes"}>Lists/Tables Inside Class</Link></li>
+                                        <li><Link className="dropdown-item" to={"/apply-events"}>Apply With Events</Link></li>
+                                        <li><Link className="dropdown-item" to={"/apply-events-js"}>Apply Js With Events</Link></li>
+                                        <li><Link className="dropdown-item" to={"/apply-api"}>Apply With Api</Link></li>
+                                        <li><Link className="dropdown-item" to={"/apply-api-js"}>Apply Js With Api</Link></li>
                                         <li><Link className="dropdown-item" to={"/line-login"}>Line Login</Link></li>
                                         <li><Link className="dropdown-item" to={"/ref-of-hook"}>Ref Of Hook</Link></li>
-                                        <li><Link className="dropdown-item" to={"/ref-of-hook-add-styles"}>Ref Of Hook Add Styles</Link></li>
+                                        <li><Link className="dropdown-item" to={"/ref-of-hook-add-styles"}>Ref Of Hook Add Styles</Link></li>*/}
                                     </ul>
                                 </li>
                             </ul>
@@ -134,9 +127,7 @@ export class MenubarComponent extends Component<MyProps, MyState> {
 
 
                 {/* all router components render inside Outlet */}
-                <Outlet>
-
-                </Outlet>
+                <Outlet></Outlet>
             </>
         );
     }
