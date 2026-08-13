@@ -32,7 +32,7 @@ export class ReadsManageCrudConceptClass extends Component<Props, State> {
     }
 
     // it works just once time when component is rendered
-    componentDidMount = async () => {
+    componentDidMount = async () : Promise<void> => {
         const usersFetch = await fetch(this.fakeStoreApi[0]);
         const productsFetch = await fetch(this.fakeStoreApi[1]);
         // convert res to json
@@ -47,7 +47,7 @@ export class ReadsManageCrudConceptClass extends Component<Props, State> {
     }
 
     // work
-    private setupUsersAndProductsObjects = () => {
+    private setupUsersAndProductsObjects = () : void => {
         for (let i = 0; i < this.state.users?.length; i++) {
             const user = new User(
                 this.state.users[i].id,
@@ -69,11 +69,11 @@ export class ReadsManageCrudConceptClass extends Component<Props, State> {
         }
     }
 
-    private handleChangeOption = async (event: ChangeEvent<HTMLInputElement>) => {
+    private handleChangeOption = async (event: ChangeEvent<HTMLInputElement>) : Promise<void> => {
         this.setState({option: Number(event.target?.value)})
     }
 
-    private usersTable() {
+    private usersTable() : JSX.Element {
         return (
             <div>
                 <table className="table mt-3 w-75" style={{margin: "0 auto"}}>
@@ -103,7 +103,7 @@ export class ReadsManageCrudConceptClass extends Component<Props, State> {
         )
     }
 
-    private productsTable() {
+    private productsTable(): JSX.Element {
         return (
             <div>
                 <table className="table mt-3 w-100" style={{margin: "0 auto"}}>
@@ -136,7 +136,7 @@ export class ReadsManageCrudConceptClass extends Component<Props, State> {
         )
     }
 
-    render() {
+    render() : JSX.Element {
         // console.log(this.state.data); // console.log(this.users,this.products)
         let checkUsersExist, checkProductsExist, checkCreateProductSelect, checkUpdateProductSelect,
             checkDeleteProductSelect// checkProductsExist// , checkProductsExist,checkCreateProductSelect,checkUpdateProductSelect,checkDeleteProductSelect

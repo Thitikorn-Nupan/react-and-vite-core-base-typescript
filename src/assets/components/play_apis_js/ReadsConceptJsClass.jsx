@@ -1,14 +1,13 @@
 import {Component} from "react";
+import {useNavigate, useLocation, useParams} from "react-router-dom";
 
-// import {covertClassToFunction} from "./covertClassToFunction.jsx";
 
-
-export class ReadsConceptJsClass extends Component {
-
+class ReadsConceptJsClass extends Component {
+    baseUrl = process.env.BASE_URL
     fakeStoreApi = [
-        "https://fakestoreapi.com/users?limit=5",
-        "https://fakestoreapi.com/products?limit=5",
-        "https://fakestoreapi.com/users"
+        this.baseUrl+"/users?limit=5",
+        this.baseUrl+"/products?limit=5",
+        this.baseUrl+"/users"
     ]
 
     constructor(props) {
@@ -76,7 +75,7 @@ export class ReadsConceptJsClass extends Component {
     }
 
     _editUser(id) {
-        this.props.navigate(`/users/edit?id=${id}`);
+        this.props.router.navigate(`/users/edit?id=${id}`);
     }
 
     _deleteUser = async (id) => {
@@ -165,12 +164,19 @@ export class ReadsConceptJsClass extends Component {
                 </div>
                 {checkUsersExist && this.usersTable()}
                 {checkProductsExist && this.productsTable()}
-                {/*{checkCreateProductSelect && <CreateConceptClass/>}
-                    {checkUpdateProductSelect && <UpdateConceptClass/>}
-                    {checkDeleteProductSelect && <DeleteConceptClass />}
-                 */}
             </div>
         )
     }
 }
+
+function withRouter(Component) {
+    return function(props) {
+        const navigate = useNavigate();
+        const params = useParams();
+        const location = useLocation();
+        return <Component {...props} router={{ navigate, params, location }} />;
+    }
+}
+
+export default withRouter(ReadsConceptJsClass);
 

@@ -7,6 +7,7 @@ type Props = {
 type State = {
     names: string[],
     values: string[],
+    baseUrl: string | undefined
 }
 export class CreateConceptClass extends Component<Props,State> {
     constructor(props:Props) {
@@ -15,15 +16,16 @@ export class CreateConceptClass extends Component<Props,State> {
         this.state = {
             names : [], // stores name of input
             values : [], // stores value of input
+            baseUrl : process.env.BASE_URL
         }
     }
 
-    componentDidMount() {
+    componentDidMount() : void {
         console.log('CreateConceptClass mounted');
     }
 
     // ** Bad way // this method work after double-click on input
-    private handleEachInputToInputsArray = (event: React.FormEvent<HTMLInputElement>) => {
+    private handleEachInputToInputsArray = (event: React.FormEvent<HTMLInputElement>) : void => {
         const name: string = event.currentTarget?.name; // ** name it means we get name attribute on input tag
         const value: string = event.currentTarget?.value; // ** value hols as value
         /*
@@ -66,11 +68,11 @@ export class CreateConceptClass extends Component<Props,State> {
 
     }
 
-    private handleRequestPostMethod = async (event:React.FormEvent<HTMLFormElement>) => {
+    private handleRequestPostMethod = async (event:React.FormEvent<HTMLFormElement>) : Promise<void> => {
         event.preventDefault() // stop going another page
         // console.log(this.state.names) // ['title', 'price', 'description', 'image', 'category']
         // console.log(this.state.values) // ['Java', '350', 'Test', 'Test', 'Book']
-        const response = await fetch('https://fakestoreapi.com/products', {
+        const response = await fetch(this.state.baseUrl+'/products', {
             method: "POST",
             body: JSON.stringify(
                 {
@@ -86,7 +88,7 @@ export class CreateConceptClass extends Component<Props,State> {
         alert(`The new id is ${json.id}`)
     }
 
-    render() {
+    render() : JSX.Element {
         return (
             <div className="mt-4 w-100">
                 <form className={"form-control p-2"} onSubmit={this.handleRequestPostMethod}>

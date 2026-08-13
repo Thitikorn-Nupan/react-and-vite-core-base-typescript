@@ -59,13 +59,13 @@ export class ListsAndKeys extends Component {
         );
     }
 
-    listOfPeople2() {
+    listOfPeople2() : JSX.Element {
         const chemists: People[] = this.people2
         /*.filter((person: People) =>
             person.profession === 'chemist'
         );
         */
-        const listItems = chemists.map(person =>
+        const listItems: JSX.Element[] = chemists.map(person =>
             <li className={"pb-3 sm:pb-4"} key={person.id}>
                 {/*
                 Keys must be unique among siblings. However, it’s okay to use the same keys for JSX nodes in different arrays.
@@ -96,21 +96,19 @@ export class ListsAndKeys extends Component {
             </li>
         );
         return (
-            <>
-                <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700" style={{margin: "0 auto"}}>
-                    {listItems}
-                </ul>
-            </>
+            <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700" style={{margin: "0 auto"}}>
+                {listItems}
+            </ul>
         )
     }
 
 
-    listOfPeople() {
-        const listItems = this.people1.map(person => <li className={"list-group-item"}>{person}</li>);
+    listOfPeople() : JSX.Element {
+        const listItems: JSX.Element[] = this.people1.map(person => <li className={"list-group-item"}>{person}</li>);
         return <ul className="list-group">{listItems}</ul>
     }
 
-    listOfPeople3() {
+    listOfPeople3(): JSX.Element  {
         return (
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -156,22 +154,16 @@ export class ListsAndKeys extends Component {
     }
 
 
-    render() {
+    render()  : JSX.Element  {
         return (
-            <>
-                <div className="container" style={{"maxWidth": "700px", margin: "0 auto"}}>
-                    {
-                        //  this.listOfPeople()
-                        // you'll have this error Warning: Each child in a list should have a unique “key” prop.
-                    }
-                    {
-                        this.listOfPeople2()
-                    }
-
-                    {this.listOfPeople3()}
-
-                </div>
-            </>
+            <div className="container" style={{"maxWidth": "700px", margin: "0 auto"}}>
+                {
+                    //  this.listOfPeople()
+                    // you'll have this error Warning: Each child in a list should have a unique “key” prop.
+                }
+                {this.listOfPeople2()}
+                {this.listOfPeople3()}
+            </div>
         )
     }
 }

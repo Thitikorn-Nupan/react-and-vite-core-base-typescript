@@ -3,12 +3,12 @@ import * as React from "react";
 import {Robot} from "../../entities/robot.ts";
 
 
-const Form1 = () => {
+const Form1 = (): JSX.Element => {
     // *** state hook with function *** first argument is data default second is setter argument
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     // *** function inside function
-    const handleOnClick = () => {
+    const handleOnClick = (): void => {
         console.log(email, username)
     }
     return (
@@ -46,7 +46,7 @@ const Form1 = () => {
 }
 
 
-const Form2 = () => {
+const Form2 = (): JSX.Element => {
     const [language1, setLanguage1] = useState(false);
     const [language2, setLanguage2] = useState(false);
     const [language3, setLanguage3] = useState(false);
@@ -65,7 +65,7 @@ const Form2 = () => {
      }
      */
         // Or another way
-    const handleLanguagesClick = (event: React.FormEvent<HTMLInputElement>) => {
+    const handleLanguagesClick = (event: React.FormEvent<HTMLInputElement>): void => {
             // console.log(event.currentTarget.value)
             if (event.currentTarget.value === "Java") {
                 setLanguage1(!language1)
@@ -113,7 +113,8 @@ interface MyObject { // Define the type for your object
     codeName: string,
     price: number,
 }
-const Form3MultipleInputs = () => {
+
+const Form3MultipleInputs = (): JSX.Element => {
     // robots as array , setRobots work as seem set up each element
     const demoRobots: Robot[] = [
         new Robot(1, 'RX-A-100', 90000000, true),
@@ -131,7 +132,7 @@ const Form3MultipleInputs = () => {
     const [inputs, setInputs] = useState<MyObject>({codeName: "", price: 0, rid: 0})
 
     // ** OnChange()
-    const handleLoadEachInputToInputsArray = (event: FormEvent<HTMLInputElement>) => {
+    const handleLoadEachInputToInputsArray = (event: FormEvent<HTMLInputElement>): void => {
         const name: string = event.currentTarget.name; // name it means we get name attribute on input tag
         console.log(`name attribute is ${name}`)
         const value: string = event.currentTarget.value; // value hols as value
@@ -148,7 +149,7 @@ const Form3MultipleInputs = () => {
     }
 
     // ** OnClick()  //  Good way **  There are many ways to do this, but the easiest one is to use the array spread syntax
-    const handleOnClick = () => {
+    const handleOnClick = (): void => {
         if (inputs.rid && inputs.codeName && inputs.price) {
             // ** Replace the state
             setRobots([ // with a new array
@@ -158,15 +159,15 @@ const Form3MultipleInputs = () => {
         }
     }
 
-    const handleActiveCheck = () => {
+    const handleActiveCheck = (): void => {
         setActive(!active) // just switch value after do event
     }
 
-    const handleOnClickRow = (index: number) => {
+    const handleOnClickRow = (index: number): void => {
         setSelectIndex(index)
     }
 
-    const handleStyleOnClickRow = (index: number, selectedIndex: number) => {
+    const handleStyleOnClickRow = (index: number, selectedIndex: number): string => {
         return index === selectedIndex ? "table-dark" : "";
     }
 
@@ -177,7 +178,8 @@ const Form3MultipleInputs = () => {
                     <h3 className={"alert alert-primary p-2"}>
                         Work With Form Inside Function *** Multiple Inputs
                         <br/>
-                        *** We have to set name attribute on name attribute tag as the same default you work with htm ***
+                        *** We have to set name attribute on name attribute tag as the same default you work with htm
+                        ***
                     </h3>
                     <div className="mb-3">
                         Rid
@@ -225,7 +227,7 @@ const Form3MultipleInputs = () => {
                     </thead>
                     <tbody>
                     {
-                        robots.map((robot : Robot, index : number) => (
+                        robots.map((robot: Robot, index: number) => (
                             <tr key={robot.rid}
                                 className={handleStyleOnClickRow(index, selectIndex)} // dynamic style
                                 onClick={() => handleOnClickRow(index)}>
@@ -248,21 +250,23 @@ interface Props {
     logMessage: (message: string) => string,  // wait to pass : () => "test"
     frameworkDefault: string
 }
+
 // *** it works like const Form4setSateByHooks = (props) => {} in js *** in ts , you have to set type of props
-const Form4setSateByHooks = ({logMessage, frameworkDefault}: Props) => {
+const Form4setSateByHooks = ({logMessage, frameworkDefault}: Props): JSX.Element => {
     /**
      *** Hooks will not work in React class components.
      Hooks can only be called inside React function components.
      Hooks can only be called at the top level of a component.
      Hooks cannot be conditional
-    */
+     */
     console.log(logMessage) // () => "test"
     const [framework, setFramework] = useState(frameworkDefault)
     return (
         <div className={"container w-50 mt-4"}>
             <form className={"form-control"}>
-                <h3 className={"alert alert-primary"} >{framework} is our favorite framework</h3>
-                <h3 className={"alert alert-primary"}>*** React Hooks helps for setting event *** set event on tags ***</h3>
+                <h3 className={"alert alert-primary"}>{framework} is our favorite framework</h3>
+                <h3 className={"alert alert-primary"}>*** React Hooks helps for setting event *** set event on tags
+                    ***</h3>
                 <div className="form-check">
                     <input className="form-check-input"
                            type="radio"
@@ -279,7 +283,7 @@ const Form4setSateByHooks = ({logMessage, frameworkDefault}: Props) => {
                            type="radio"
                            name={"framework"}
                            value={"Spring & Spring Boot"}
-                           // *** call event.target.value to get value attribute
+                        // *** call event.target.value to get value attribute
                            onClick={(event: React.MouseEvent<HTMLInputElement>) => setFramework(event.currentTarget.value)}
                     />
                     <label className="form-check-label">
@@ -321,7 +325,7 @@ const Form4setSateByHooks = ({logMessage, frameworkDefault}: Props) => {
 
 
 // Hard way
-const Form5setStateAsObject = () => {
+const Form5setStateAsObject = (): JSX.Element => {
     const [car, setCar] = useState({
         brand: "",
         model: "",
@@ -330,30 +334,34 @@ const Form5setStateAsObject = () => {
     })
 
     // *** way to set each props if props is object
-    const handleChangeBrand = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeBrand = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setCar(previousState => ({
-            ...previousState, brand: event.target?.value
-        }))
+                ...previousState, brand: event.target?.value
+            })
+        )
     }
-    const handleChangeModel = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeModel = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setCar(previousState => ({
-            ...previousState, model: event.target?.value
-        }))
+                ...previousState, model: event.target?.value
+            })
+        )
     }
-    const handleChangeYear = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeYear = (event: React.ChangeEvent<HTMLInputElement>): void => {
         console.log(event.target?.value)
         // @ts-ignore
         setCar(previousState => ({
-            ...previousState, year: event.target?.value
-        }))
+                ...previousState, year: event.target?.value
+            })
+        )
     }
-    const handleChangeColor = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeColor = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setCar(previousState => ({
-            ...previousState, color: event.target?.value
-        }))
+                ...previousState, color: event.target?.value
+            })
+        )
     }
 
-    const handleOnClick = () => {
+    const handleOnClick = (): void => {
         console.log(car)
     }
 
@@ -379,7 +387,8 @@ const Form5setStateAsObject = () => {
                 </div>
                 {
                     // one line condition
-                    (car.brand !== "" && car.model !== "" && car.color !== "") && <h2 className={"alert alert-primary"}>{car.brand} {car.model} {car.year} {car.color}</h2>
+                    (car.brand !== "" && car.model !== "" && car.color !== "") &&
+                    <h2 className={"alert alert-primary"}>{car.brand} {car.model} {car.year} {car.color}</h2>
                 }
                 <button type="button" className="btn btn-primary" onClick={handleOnClick}>Submit</button>
             </form>
@@ -388,7 +397,7 @@ const Form5setStateAsObject = () => {
 }
 
 // *** Hard way but reduce code
-const Form6setStateAsObjectDynamicInputs = () => {
+const Form6setStateAsObjectDynamicInputs = (): JSX.Element => {
     const [car, setCar] = useState({
         brand: "",
         model: "",
@@ -397,17 +406,16 @@ const Form6setStateAsObjectDynamicInputs = () => {
         // in ts if we don't set we won access each attribute
     })
     // *** way to set each props of object
-    const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>): void => {
         // ** why target attribute work???
-        let name : string = event.target?.name;
-        let value : string = event.target?.value;
-        setCar(previousState =>
-            ({
+        let name: string = event.target?.name;
+        let value: string = event.target?.value;
+        setCar(previousState => ({
                 ...previousState, [name]: value
             })
         )
     }
-    const handleOnClick = () => {
+    const handleOnClick = () : void => {
         console.log(car)
     }
 

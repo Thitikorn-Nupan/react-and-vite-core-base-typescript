@@ -1,14 +1,13 @@
 import {createRef, useEffect, useRef, useState} from "react";
 import * as React from "react";
 
-function Counter() {
-
+function Counter() : JSX.Element {
     // The thing about setting the React ref to a new value is that it doesn't trigger
     const hasClickedButton = useRef(false);
     const [count, setCount] = useState(0);
 
-    function onClick() { // work after clicked
-        const newCount = count + 1;
+    function onClick() : void { // work after clicked
+        const newCount: number = count + 1;
         setCount(newCount);
         hasClickedButton.current = !hasClickedButton.current;
     }
@@ -29,11 +28,11 @@ function Counter() {
     );
 }
 
-function Counter2() {
+function Counter2() : JSX.Element {
     // Rule of thumb: Whenever you need to track state in your React component which shouldn't trigger a re-render of your component, you can use React's useRef Hooks to create an instance variable for it.
     const [count, setCount] = useState(0);
 
-    function onClick() {
+    function onClick() : void {
         setCount(count + 1);
     }
 
@@ -68,7 +67,7 @@ function Counter2() {
 }
 
 
-function Input() {
+function Input() : JSX.Element {
     return (
         <ComponentWithDomApi
             label="Input "
@@ -84,7 +83,7 @@ interface ComponentWithDomApiProps {
     isFocus: boolean;
 }
 
-function ComponentWithDomApi({label, value, isFocus}: ComponentWithDomApiProps) {
+function ComponentWithDomApi({label, value, isFocus}: ComponentWithDomApiProps) : JSX.Element {
     const ref = useRef<HTMLInputElement>(); // (1) we are using React's useRef Hook to create a ref object (1)
     useEffect(() => {
         if (isFocus) {
@@ -100,10 +99,10 @@ function ComponentWithDomApi({label, value, isFocus}: ComponentWithDomApiProps) 
 }
 
 
-function Input2() {
+function Input2() : JSX.Element {
     const [text, setText] = useState('Input some text...');
 
-    function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
+    function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) : void {
         setText(event.target.value);
     }
     const ref: React.MutableRefObject<any> = useRef();
@@ -126,11 +125,11 @@ function Input2() {
 }
 
 // new way
-function Input3() {
+function Input3() : JSX.Element {
 
     const [text, setText] = useState('Input some text...');
 
-    function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
+    function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) : void {
         setText(event.target.value);
     }
     // ** You may not use the ref attribute on function components because they don’t have instances
@@ -147,7 +146,7 @@ function Input3() {
     );
 }
 
-const RefOfHook = () => {
+const RefOfHook = () : JSX.Element => {
     return (
         <div className={"container card w-50"}>
             {Counter()}

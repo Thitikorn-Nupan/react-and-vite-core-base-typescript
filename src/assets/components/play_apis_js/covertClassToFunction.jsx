@@ -1,4 +1,5 @@
 import {useLocation, useNavigate} from "react-router-dom";
+
 // optional
 function mangeProps(AnyClassComponent) {
     return function (props) { // The function returns another function that takes props as input

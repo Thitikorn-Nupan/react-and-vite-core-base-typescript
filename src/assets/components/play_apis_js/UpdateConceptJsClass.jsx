@@ -3,8 +3,8 @@ import covertClassToFunction from "./covertClassToFunction.jsx";
 
 
 class UpdateConceptJsClass extends Component {
-
-    fakeStoreApi  = "https://fakestoreapi.com/users"
+    baseUrl = process.env.BASE_URL
+    fakeStoreApi  = this.baseUrl+"/users"
 
     constructor(props) {
         super(props);

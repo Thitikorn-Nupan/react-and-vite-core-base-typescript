@@ -16,7 +16,7 @@ export class TestFlowbite extends Component <MyProps, MyState> {
         }
     }
 
-    private alerts() {
+    private alerts() : JSX.Element  {
         return (
             <>
                 <div
@@ -99,7 +99,7 @@ export class TestFlowbite extends Component <MyProps, MyState> {
 
     }
 
-    private dropdown1() {
+    private dropdown1() : JSX.Element {
         return (
             <Menu as="div" className="relative inline-block text-left ml-60">
                 <div>
@@ -155,13 +155,13 @@ export class TestFlowbite extends Component <MyProps, MyState> {
         )
     }
 
-    handleOnButtonClick = () => {
+    handleOnButtonClick = () : void => {
         this.setState({
             enableDropdown: !this.state.enableDropdown
         })
     }
 
-    render() {
+    render() : JSX.Element  {
         return (
             <>
                 <div
@@ -211,6 +211,7 @@ export class TestFlowbite extends Component <MyProps, MyState> {
                           d="m1 1 4 4 4-4"/>
                 </svg>
                 </button>
+
                 {/* absolute for same position */}
                 {this.state.enableDropdown === false && (
                     <div id="dropdown"

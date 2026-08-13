@@ -21,13 +21,13 @@ export class LogicAndEvents extends Component<Props, State> {
         }
     }
 
-    protected changeOptionAfterClick = (event: ChangeEvent<HTMLInputElement>) => {
+    protected changeOptionAfterClick = (event: ChangeEvent<HTMLInputElement>) : void => {
         this.setState({
             option: Number(event.target.value)
         })
     }
 
-    render() {
+    render() : JSX.Element  {
         switch (this.state.option) {
             case 1:
                 this.component = <IncrementAndDecrementInteger number={1}/>
@@ -109,25 +109,25 @@ class IncrementAndDecrementInteger extends Component<PropsIncrementAndDecrementI
         }
     }
 
-    componentWillUnmount() {
+    componentWillUnmount() : void {
         console.log("IncrementAndDecrementInteger component is unmount");
     }
 
-    private incrementStateNumberAfterClick = () => {
+    private incrementStateNumberAfterClick = ()  : void => {
         this.number++
         this.setState({
             number: this.number,
         })
     }
 
-    private decrementStateNumberAfterClick = () => {
+    private decrementStateNumberAfterClick = () : void => {
         this.number--
         this.setState({
             number: this.number,
         })
     }
 
-    render() {
+    render() : JSX.Element  {
         return (
             <div className="card mt-3 w-50" style={{margin: "0 auto"}}>
                 <h5 className="card-header">Work with onclick</h5>
@@ -169,7 +169,7 @@ class ReadAndReadsDataList extends Component<PropsReadAndReadsDataList, StateRea
     }
 
     // All event can work with void methods but you have to call by no return : () => <method>()
-    private handleSearchByRobotId = (event: ChangeEvent<HTMLInputElement>) => {
+    private handleSearchByRobotId = (event: ChangeEvent<HTMLInputElement>) : void => {
         // ** it is importance for dynamic ,don't know why but if remove this event did not work
         // ** setSate() it will mark method reload after event
         this.setState({})
@@ -181,7 +181,7 @@ class ReadAndReadsDataList extends Component<PropsReadAndReadsDataList, StateRea
         }
     }
 
-    private removeRobotById = (robot: Robot) => {
+    private removeRobotById = (robot: Robot) : void => {
         // first we have to find index by object
         const index: number = this.robotsCanChange.indexOf(robot)
         // remove index
@@ -190,7 +190,7 @@ class ReadAndReadsDataList extends Component<PropsReadAndReadsDataList, StateRea
         this.robots = this.robotsCanChange
     }
 
-    private cloneRobot = (robotClone: Robot) => {
+    private cloneRobot = (robotClone: Robot) : void => {
         // ** key is unique If we remove some robots , This way it's good to clone robot
         const lastRid: number = this.robotsCanChange[this.robotsCanChange.length - 1].rid
         const robotNew: Robot = new Robot(lastRid + 1, robotClone.codeName, robotClone.price, robotClone.active)
@@ -198,16 +198,16 @@ class ReadAndReadsDataList extends Component<PropsReadAndReadsDataList, StateRea
         this.robots = this.robotsCanChange
     }
 
-    private handleOnRobotIdClick = (robotId: number) => {
+    private handleOnRobotIdClick = (robotId: number) : void => {
         this.setState({robotIdSelected: robotId})
     }
 
-    private getStyleIfRobotIdClick = (robotId: number) => {
+    private getStyleIfRobotIdClick = (robotId: number) : string => {
         return robotId === this.state.robotIdSelected ? "table-dark" : ""
     }
 
 
-    render() {
+    render(): JSX.Element  {
         return (
             <div>
                 <div className="container mb-3 mt-3 w-25">

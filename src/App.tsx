@@ -25,7 +25,7 @@ import {ListsAndKeys} from "./assets/components/understand-lists-keys/ListsAndKe
 import {RefOfHook} from "./assets/components/understand-ref-hook/RefOfHook.tsx";
 import {RefOfHookAndStyles} from "./assets/components/understand-add-styles/RefOfHookAndStyles.tsx";
 import {TestFlowbite} from "./assets/components/understand-flowbite/TestFlowbite.tsx";
-import {ReadsConceptJsClass} from "./assets/components/play_apis_js/ReadsConceptJsClass";
+import ReadsConceptJsClass from "./assets/components/play_apis_js/ReadsConceptJsClass";
 
 /*Use .ts files:
 For general TypeScript code that doesn’t involve JSX syntax, such as utility functions, business logic or library code.

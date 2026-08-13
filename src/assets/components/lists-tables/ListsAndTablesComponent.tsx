@@ -31,7 +31,7 @@ export class ListsAndTablesComponent extends Component<Props, State> {
     }
 
     // ** Table1 no loop ** Bad logic
-    private handle1OnRowClick = (student: Student) => {
+    private handle1OnRowClick = (student: Student) : void => {
         console.log(student.sid, student.fullname, student.age)
         if (student.sid === 1) {
             this.setState({
@@ -64,7 +64,7 @@ export class ListsAndTablesComponent extends Component<Props, State> {
             })
         }
     }
-    private table1StudentsNoLoop() {
+    private table1StudentsNoLoop() : JSX.Element {
         return (
             <div className={"container w-50"}>
                 <h3 className={"alert alert-primary"}>** No Loop</h3>
@@ -109,14 +109,14 @@ export class ListsAndTablesComponent extends Component<Props, State> {
 
 
     // ** Table2
-    private handle2OnRowClick = (student: Student) => {
+    private handle2OnRowClick = (student: Student) : void => {
         // console.log(student.sid, student.fullname, student.age)
         this.setState({
             // selectedIndex holds id for condition it's real time
             selectedIndex: student.sid,
         })
     }
-    private table2StudentsWithLoop() {
+    private table2StudentsWithLoop() : JSX.Element {
         return (
             <>
                 <div className={"container w-50 mt-4"}>
@@ -153,7 +153,7 @@ export class ListsAndTablesComponent extends Component<Props, State> {
     }
 
 
-    render() {
+    render() : JSX.Element {
         return (
             <div className={"container mt-4"}>
                 {this.table1StudentsNoLoop()}

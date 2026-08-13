@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
 
 export function LogicAndEventsJs() {
     const [option, setOption] = useState();
@@ -17,7 +16,6 @@ export function LogicAndEventsJs() {
 
     switch (option) {
         case 1:
-            console.log("case 1")
             component = <IncrementAndDecrementInteger number={10}/>
             break;
         case 2:

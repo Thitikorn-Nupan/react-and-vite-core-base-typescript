@@ -12,7 +12,7 @@ type Data = {
     lastname: string,
     email: string,
 }
-const formInput = () => {
+const formInput = (): JSX.Element  => {
     const [firstname, setFirstname] = useState('Firstname...');
     const [lastname, setLastname] = useState('Lastname...');
     const [email, setEmail] = useState('XXX@gmail.com');
@@ -23,17 +23,17 @@ const formInput = () => {
     }
     const [data, setData] = useState(dataDemo)
 
-    const handleOnFirstnameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleOnFirstnameChange = (event: React.ChangeEvent<HTMLInputElement>) : void => {
         setFirstname(event.target.value);
     }
-    const handleLastnameOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleLastnameOnChange = (event: React.ChangeEvent<HTMLInputElement>) : void  => {
         setLastname(event.target.value);
     }
-    const handleOnEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleOnEmailChange = (event: React.ChangeEvent<HTMLInputElement>) : void  => {
         setEmail(event.target.value);
     }
 
-    const handleOnButtonClick = (event: React.MouseEvent<HTMLFormElement>) => {
+    const handleOnButtonClick = (event: React.MouseEvent<HTMLFormElement>) : void  => {
         event.preventDefault()
         setData({
             firstname: firstname,
@@ -54,7 +54,7 @@ const formInput = () => {
                               type="text"
                               value={lastname}
                               onChange={handleLastnameOnChange}/>
-            Email : <input className={"form-control"}
+            Email : <input  className={"form-control"}
                            type="email"
                            value={email}
                            onChange={handleOnEmailChange}/>
@@ -75,7 +75,7 @@ const formInput = () => {
 }
 
 
-const RefOfHookAndStyles = () => {
+const RefOfHookAndStyles = (): JSX.Element  => {
     return (
         <div className={"container"}>
             {formInput()}

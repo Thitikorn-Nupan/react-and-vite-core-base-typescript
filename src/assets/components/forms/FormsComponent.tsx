@@ -5,7 +5,7 @@ import * as React from "react";
  we have to set type of props in .ts file (this is difference between js and ts)
  if you need to use props & state you have to declare as a type
  and use type on Component<MyProps , MyState>
-*/
+ */
 type MyProps = {
     email: string,
     username: string,
@@ -18,37 +18,40 @@ type MyState = {
 
 
 export class FormsComponent extends Component<MyProps, MyState> {
-    componentWillUnmount() {
+
+    componentWillUnmount(): void {
         console.log("FormsComponent class is unmounted.");
     }
 
     // ** Form1
-    private handleOnEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
+    private handleOnEmailChange = (event: ChangeEvent<HTMLInputElement>): void => {
         // const target = event.target; // ** return tag
         // const value = target.value; // ** return value
         console.log(`email : ${event.target.value}`);
     }
-    private handleOnUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    private handleOnUsernameChange = (event: ChangeEvent<HTMLInputElement>): void => {
         console.log(`username : ${event.target.value}`);
     }
-    private handleOnButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    private handleOnButtonClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
         // can not get each inputs // ** <button type="button" class="btn btn-primary">Submit</button>
         console.log(event.target)
     }
 
-    private form1WithHandleOnChange() {
+    private form1WithHandleOnChange(): JSX.Element {
         return (
             // write multiple tag inside <> tag p , a , dev , input , ...  </>
             <>
                 <form className={"form-control p-2"}>
-                <h3 className={"alert alert-primary"}>React Work With Form Basic *** Handle Functions *** Submit by button</h3>
+                    <h3 className={"alert alert-primary"}>React Work With Form Basic *** Handle Functions *** Submit by
+                        button</h3>
                     <div className="mb-3">
                         Email
                         <input type="email" className="form-control" name="email" onChange={this.handleOnEmailChange}/>
                     </div>
                     <div className="mb-3">
                         Username
-                        <input type="text" className="form-control" name="username" onChange={this.handleOnUsernameChange}/>
+                        <input type="text" className="form-control" name="username"
+                               onChange={this.handleOnUsernameChange}/>
                     </div>
                     <button type="button" className="btn btn-primary" onClick={this.handleOnButtonClick}>Submit</button>
                 </form>
@@ -57,131 +60,122 @@ export class FormsComponent extends Component<MyProps, MyState> {
     }
 
 
-
     //** Form2
     protected email: string = ""
     protected username: string = ""
 
     // *** focus return type FormEvent<HTMLInputElement> **  ChangeEvent<HTMLInputElement> or FormEvent<HTMLInputElement> work both
     // *** all event can use this React.FormEvent<HTMLInputElement> ??
-    private handleOnEmailChangeForm2 = (event: React.FormEvent<HTMLInputElement>) => {
+    private handleOnEmailChangeForm2 = (event: React.FormEvent<HTMLInputElement>): void => {
         // in FormEvent use currentTarget instead target
         if (event.currentTarget.value.length >= 10) {
             this.email = event.currentTarget.value;
-        }else {
+        } else {
             console.log('should more than 10 characters');
         }
     }
-    private handleOnUsernameChangeForm2 = (event: React.FormEvent<HTMLInputElement>) => {
+    private handleOnUsernameChangeForm2 = (event: React.FormEvent<HTMLInputElement>): void => {
         if (event.currentTarget.value.length >= 5) {
             this.username = event.currentTarget.value;
         } else {
             console.log('should more than 5 characters');
         }
     }
-    private handleOnButtonClickForm2 = () => {
+    private handleOnButtonClickForm2 = (): void => {
         console.log(this.email, this.username);
     }
 
-    private form2WithHandleOnChangeSetToAttributeClass() {
+    private form2WithHandleOnChangeSetToAttributeClass(): JSX.Element {
         return (
-            // write multiple tag inside <> tag p , a , dev , input , ...  </>
-            <>
-                <form className={"form-control p-2"}>
-                    <h3 className={"alert alert-primary"}>React Work With Form *** Handle Functions Set to Attributes *** Submit by button</h3>
-                    <div className="mb-3">
-                        Email
-                        <input type="email" className="form-control" name="email" onChange={this.handleOnEmailChangeForm2}/>
-                    </div>
-                    <div className="mb-3">
-                        Username
-                        <input type="text" className="form-control" name="username" onChange={this.handleOnUsernameChangeForm2}/>
-                    </div>
-                    <button type="button" className="btn btn-primary" onClick={this.handleOnButtonClickForm2}>Submit</button>
-                </form>
-            </>
+            <form className={"form-control p-2"}>
+                <h3 className={"alert alert-primary"}>React Work With Form *** Handle Functions Set to Attributes ***
+                    Submit by button</h3>
+                <div className="mb-3">
+                    Email
+                    <input type="email" className="form-control" name="email" onChange={this.handleOnEmailChangeForm2}/>
+                </div>
+                <div className="mb-3">
+                    Username
+                    <input type="text" className="form-control" name="username"
+                           onChange={this.handleOnUsernameChangeForm2}/>
+                </div>
+                <button type="button" className="btn btn-primary" onClick={this.handleOnButtonClickForm2}>Submit
+                </button>
+            </form>
         )
     }
 
 
-
-
-    //** Form3,4
+    //** Form3,4 *** better ways
     constructor(props: MyProps) {
         super(props);
         this.state = {
             email: '',
             username: '',
-            enableChildComponent : false
+            enableChildComponent: false
         }
     }
 
-    protected handleOnEmailChangeForm3 = (event: React.FormEvent<HTMLInputElement>) => {
-        let email : string = "";
+    protected handleOnEmailChangeForm3 = (event: React.FormEvent<HTMLInputElement>): void => {
+        let email: string = "";
         if (event.currentTarget.value.length >= 10) {
             email = event.currentTarget.value;
         }
         this.setState({email: email})
     }
-    protected handleOnUsernameChangeForm3 = (event: React.FormEvent<HTMLInputElement>) => {
+    protected handleOnUsernameChangeForm3 = (event: React.FormEvent<HTMLInputElement>): void => {
         this.setState({username: event.currentTarget.value,})
     }
-    protected handleOnButtonClickForm3 = (event: React.FormEvent<HTMLFormElement>) => {
+    protected handleOnButtonClickForm3 = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault() // block go to another path
         console.log(this.state.email, this.state.username)
     }
 
-    protected form3WithHandleOnChangeAndStateHook() {
+    protected form3WithHandleOnChangeAndStateHook(): JSX.Element {
         return (
             // if you use onSubmit on tag form attributes all tags as required will work (you can check by click submit)
-            <>
-                <form className={"form-control p-2"} onSubmit={this.handleOnButtonClickForm3}>
-                    <h3 className={"alert alert-primary"}>React Work With Form *** Handle Functions And State Hook *** Submit by form</h3>
-                    <div className="mb-3">
-                        Email
-                        <input type="email"
-                               className="form-control"
-                               name="email"
-                               placeholder={this.state.email}
-                               onChange={this.handleOnEmailChangeForm3}
-                               required={true}/>
-                        <span className={(this.state.email.length <= 10) ? 'text-danger' : 'text-primary'}>{
-                            (this.state.email.length <= 10) ? 'incorrect' : 'correct'
-                        }
-                        </span>
-                    </div>
-                    <div className="mb-3">
-                        Username
-                        <input type="text"
-                               className="form-control"
-                               name="username"
-                               placeholder={this.state.username}
-                               onChange={this.handleOnUsernameChangeForm3}
-                               required={true}/>
-                        <span className={(this.state.username.length <= 5) ? 'text-danger' : 'text-primary'}>{
-                            (this.state.username.length <= 10) ? 'incorrect' : 'correct'
-                        }
-                        </span>
-                    </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                </form>
-            </>
+            <form className={"form-control p-2"} onSubmit={this.handleOnButtonClickForm3}>
+                <h3 className={"alert alert-primary"}>React Work With Form *** Handle Functions And State Hook ***
+                    Submit by form</h3>
+                <div className="mb-3">
+                    Email
+                    <input type="email"
+                           className="form-control"
+                           name="email"
+                           placeholder={this.state.email}
+                           onChange={this.handleOnEmailChangeForm3}
+                           required={true}/>
+                    <span
+                        className={(this.state.email.length <= 10) ? 'text-danger' : 'text-primary'}>{(this.state.email.length <= 10) ? 'incorrect' : 'correct'}</span>
+                </div>
+                <div className="mb-3">
+                    Username
+                    <input type="text"
+                           className="form-control"
+                           name="username"
+                           placeholder={this.state.username}
+                           onChange={this.handleOnUsernameChangeForm3}
+                           required={true}/>
+                    <span
+                        className={(this.state.username.length <= 5) ? 'text-danger' : 'text-primary'}>{(this.state.username.length <= 10) ? 'incorrect' : 'correct'}</span>
+                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
         )
     }
 
 
-
     // ** Form4
-    private handleOnCheckboxChange4 = () => {
+    private handleOnCheckboxChange4 = () : void => {
         // just switch value after check box change
         this.setState({enableChildComponent: !this.state.enableChildComponent,})
     }
 
-    private form4WithHandleOnChangeAndChildComponent = () => {
+    private form4WithHandleOnChangeAndChildComponent = () : JSX.Element  => {
         let formChildComponent = null
         // Work with condition
         if (this.state.enableChildComponent) {
-            formChildComponent = <FormChild a={-50} b={-50} />
+            formChildComponent = <FormChild a={-50} b={-50}/>
         }
         return (
             <div className="form-check form-switch m-lg-2">
@@ -197,7 +191,7 @@ export class FormsComponent extends Component<MyProps, MyState> {
     }
 
 
-    render() {
+    render() : JSX.Element {
         return (
             <div className={"container"}>
                 <div className={"card mt-4"}>
@@ -210,7 +204,6 @@ export class FormsComponent extends Component<MyProps, MyState> {
                 <div className={"card mt-2"}>
                     {this.form3WithHandleOnChangeAndStateHook()}
                 </div>
-
                 <div className={"card mt-2"}>
                     {this.form4WithHandleOnChangeAndChildComponent()}
                 </div>
@@ -218,7 +211,6 @@ export class FormsComponent extends Component<MyProps, MyState> {
         );
     }
 }
-
 
 
 type MyProps2 = {
@@ -230,6 +222,7 @@ type MyState2 = {
     b: number,
     styles: object
 }
+
 class FormChild extends Component<MyProps2, MyState2> {
 
     constructor(props: MyProps2) {
@@ -247,11 +240,11 @@ class FormChild extends Component<MyProps2, MyState2> {
     // *** LifeCycle of Component
     // The next phase in the lifecycle is when a component is removed from the DOM, or unmounting as React likes to call it.
     // unmounted (n. ถอดออก)
-    componentWillUnmount() {
+    componentWillUnmount() : void {
         console.log("FormChild component is unmounted.")
     }
 
-    private alertPlusNumberByProps = () => {
+    private alertPlusNumberByProps = () : JSX.Element => {
         return (
             <div className="alert alert-danger mt-3"
                  style={this.state.styles}>
@@ -260,7 +253,7 @@ class FormChild extends Component<MyProps2, MyState2> {
         )
     }
 
-    render() {
-        return (this.alertPlusNumberByProps())
+    render(): JSX.Element {
+        return this.alertPlusNumberByProps()
     }
 }

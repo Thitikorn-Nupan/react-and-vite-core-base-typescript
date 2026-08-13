@@ -36,11 +36,11 @@ export class AlertMessageComponent extends Component<MyProps, MyState> {
         }
     }
 
-    componentDidMount() {
+    componentDidMount() : void {
         console.log('AlertMessageComponent did mount')
     }
 
-    private sayHi1() {
+    private sayHi1() : JSX.Element {
         // ** JSX/TSX write inside return ( html tag ) ** by default it can not be multiple tags
         return (
             // *** in react we write style inside style={{ <attributes css>:<value> }}
@@ -50,7 +50,7 @@ export class AlertMessageComponent extends Component<MyProps, MyState> {
         )
     }
 
-    private sayHi2() {
+    private sayHi2() : JSX.Element {
         // ** or set styles / classes as variables (keep default format)
         return <p className={this.state.classesName1} style={this.state.styles}>
             {this.state.message}
@@ -58,7 +58,7 @@ export class AlertMessageComponent extends Component<MyProps, MyState> {
     }
 
     // *** sayHi3 and 4 are same but 4 get array from props
-    private sayHi3() {
+    private sayHi3() : JSX.Element[] {
         return (
             this.sayHiMessages.map((message: string) => (
                     <p key={message} className={this.state.classesName2} style={this.state.styles}>
@@ -69,7 +69,7 @@ export class AlertMessageComponent extends Component<MyProps, MyState> {
         )
     }
 
-    private sayHi4() {
+    private sayHi4() : JSX.Element[] {
         return (
             // *** this.props.messages it's from messages on <AlertMessageComponent messages={} />
             this.props.messages.map((message: string) => (
@@ -82,7 +82,7 @@ export class AlertMessageComponent extends Component<MyProps, MyState> {
     }
 
 
-    render() {
+    render() : JSX.Element {
         return (
             <div className={"container w-50"}>
                 {this.sayHi1()}

@@ -30,13 +30,13 @@ export class MenubarComponent extends Component<MyProps, MyState> {
         }
     }
 
-    handleOnButtonClick = () => {
+    handleOnButtonClick = () : void => {
         this.setState({
             enableDropdown: !this.state.enableDropdown
         })
     }
 
-    render() {
+    render() : JSX.Element {
         return (
             <>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">

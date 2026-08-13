@@ -1,9 +1,25 @@
 import {Component} from "react";
 
-export class DeleteConceptClass extends Component {
+// Clear
+type Props = {
+}
+type State = {
+    baseUrl: string | undefined
+}
 
-    private handleRequestDeleteMethod = async (id: number) => {
-        const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
+export class DeleteConceptClass extends Component<Props,State> {
+
+    constructor(props:Props) {
+        super(props);
+        // ** way to declare array of state
+        this.state = {
+            baseUrl : process.env.BASE_URL
+        }
+    }
+
+
+    private handleRequestDeleteMethod = async (id: number) : Promise<void> => {
+        const response = await fetch(`${this.state.baseUrl}/products/${id}`, {
             method: "DELETE",
         })
         // console.log(response) // Response {type: 'cors', url: 'https://fakestoreapi.com/products', redirected: false, status: 200, ok: true, …}
@@ -11,7 +27,7 @@ export class DeleteConceptClass extends Component {
         alert(`The id ${json.id} deleted`)
     }
 
-    render() {
+    render(): JSX.Element {
         return (
             <div className="mt-4 w-100">
                 <table className="table mt-3 w-75" style={{margin: "0 auto"}}>
